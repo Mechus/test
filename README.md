@@ -1,2 +1,2 @@
 # test
-Test program and API
+Test program
