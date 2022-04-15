@@ -32,13 +32,17 @@ function main(): void
         messages.push(messageSatellite);
         console.log('\n\n')
     }
-    const position: Position =  getLocation(distances);
+    const position: Position | undefined=  getLocation(distances);
     const message: string = getMessage(messages);
 
     console.info('\nResult of message information\n');
-    console.info('Position X: ', position.x);
-    console.info('Position Y: ', position.y);
-    console.info('Message: ', message);
+    if((position && message)){
+        console.info('Position X: ', position?.x);
+        console.info('Position Y: ', position?.y);
+        console.info('Message: ', message);
+    }else{
+        console.error('There is not enough information');
+    }
 }
 
 main();

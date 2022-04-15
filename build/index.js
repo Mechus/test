@@ -32,8 +32,13 @@ function main() {
     const position = (0, utils_1.getLocation)(distances);
     const message = (0, utils_1.getMessage)(messages);
     console.info('\nResult of message information\n');
-    console.info('Position X: ', position.x);
-    console.info('Position Y: ', position.y);
-    console.info('Message: ', message);
+    if ((position && message)) {
+        console.info('Position X: ', position === null || position === void 0 ? void 0 : position.x);
+        console.info('Position Y: ', position === null || position === void 0 ? void 0 : position.y);
+        console.info('Message: ', message);
+    }
+    else {
+        console.error('There is not enough information');
+    }
 }
 main();
