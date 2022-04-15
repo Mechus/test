@@ -1,6 +1,8 @@
 import { Messages, Position } from "./types";
-import config from 'config';
+import satellitesData from './satellites.json';
 var nerdamer = require('nerdamer/all.min'); 
+
+const satellitesPosition: any = satellitesData;
 
 export const getMessage = (messages: Messages[]): string => {
     let arrMessageFinal: string[] = [];
@@ -17,9 +19,9 @@ export const getMessage = (messages: Messages[]): string => {
 
 export const getLocation = (distances: number[]): Position | undefined => {
     try {
-        const equationKenobi = '('+distances[0]+')^2 = (x-('+config.get<string>('satellites.kenobi.x')+'))^2 + (y-('+config.get<string>('satellites.kenobi.y')+'))^2';
-        const equationSkywalker = '('+distances[1]+')^2 = (x-('+config.get<string>('satellites.skywalker.x')+'))^2 + (y-('+config.get<string>('satellites.skywalker.y')+'))^2';
-        const equationSato= '('+distances[2]+')^2 = (x-('+config.get<string>('satellites.sato.x')+'))^2 + (y-('+config.get<string>('satellites.sato.y')+'))^2';
+        const equationKenobi = '('+distances[0]+')^2 = (x-('+satellitesPosition.kenobi.x+'))^2 + (y-('+satellitesPosition.kenobi.y+'))^2';
+        const equationSkywalker = '('+distances[1]+')^2 = (x-('+satellitesPosition.skywalker.x+'))^2 + (y-('+satellitesPosition.skywalker.y+'))^2';
+        const equationSato= '('+distances[2]+')^2 = (x-('+satellitesPosition.sato.x+'))^2 + (y-('+satellitesPosition.sato.x+'))^2';
 
         let solXKenobi = nerdamer.solveEquations(equationKenobi,'x');
     

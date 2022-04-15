@@ -28,7 +28,7 @@ function main(): void
             nextWord = keyIn('If you want add other word press Y or N to continue (Y/N): ');
         }
 
-        distances.push(parseInt(distanceUser));
+        distances.push(parseFloat(distanceUser));
         messages.push(messageSatellite);
         console.log('\n\n')
     }

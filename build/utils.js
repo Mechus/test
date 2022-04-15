@@ -4,8 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isNumber = exports.getLocation = exports.getMessage = void 0;
-const config_1 = __importDefault(require("config"));
+const satellites_json_1 = __importDefault(require("./satellites.json"));
 var nerdamer = require('nerdamer/all.min');
+const satellitesPosition = satellites_json_1.default;
 const getMessage = (messages) => {
     let arrMessageFinal = [];
     let majorLength = messages.reduce((a, b) => (a < b.length) ? b.length : a, 0);
@@ -19,9 +20,9 @@ const getMessage = (messages) => {
 exports.getMessage = getMessage;
 const getLocation = (distances) => {
     try {
-        const equationKenobi = '(' + distances[0] + ')^2 = (x-(' + config_1.default.get('satellites.kenobi.x') + '))^2 + (y-(' + config_1.default.get('satellites.kenobi.y') + '))^2';
-        const equationSkywalker = '(' + distances[1] + ')^2 = (x-(' + config_1.default.get('satellites.skywalker.x') + '))^2 + (y-(' + config_1.default.get('satellites.skywalker.y') + '))^2';
-        const equationSato = '(' + distances[2] + ')^2 = (x-(' + config_1.default.get('satellites.sato.x') + '))^2 + (y-(' + config_1.default.get('satellites.sato.y') + '))^2';
+        const equationKenobi = '(' + distances[0] + ')^2 = (x-(' + satellitesPosition.kenobi.x + '))^2 + (y-(' + satellitesPosition.kenobi.y + '))^2';
+        const equationSkywalker = '(' + distances[1] + ')^2 = (x-(' + satellitesPosition.skywalker.x + '))^2 + (y-(' + satellitesPosition.skywalker.y + '))^2';
+        const equationSato = '(' + distances[2] + ')^2 = (x-(' + satellitesPosition.sato.x + '))^2 + (y-(' + satellitesPosition.sato.x + '))^2';
         let solXKenobi = nerdamer.solveEquations(equationKenobi, 'x');
         let solYSkywalker = nerdamer.solveEquations(equationSkywalker, 'y');
         let solYKenobiSkywalker = 'y = ' + solYSkywalker[0].toString().replace(/x/g, '(' + solXKenobi[0].toString() + ')');
